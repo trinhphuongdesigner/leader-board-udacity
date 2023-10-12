@@ -8,15 +8,15 @@ import NewPoll from "./pages/NewQuestion";
 import NotFoundPage from "./pages/404";
 import store from "./store";
 import { getAllUsers } from "./apis/userApi";
-import { saveQuestionApi, saveQuestionAnswerApi } from "./helper/fakeData";
+import { _saveQuestion, _saveQuestionAnswer } from "./helper/fakeData";
 import Header from "./components/layout/Header";
 
-describe("test saveQuestionApi", () => {
+describe("test _saveQuestion", () => {
   it("Async Function", async () => {
     const optionOneText = "1";
     const optionTwoText = "2";
     const authedUser = "tylermcginnis";
-    const result = await saveQuestionApi({
+    const result = await _saveQuestion({
       optionOneText,
       optionTwoText,
       authedUser,
@@ -29,19 +29,19 @@ describe("test saveQuestionApi", () => {
     const optionTwoText = "2";
     const authedUser = "sarahedo123";
     try {
-      await saveQuestionApi({ optionOneText, optionTwoText, authedUser });
+      await _saveQuestion({ optionOneText, optionTwoText, authedUser });
     } catch (e) {
       expect(e).toBe("Error");
     }
   });
 });
 
-describe("test saveQuestionAnswerApi", () => {
+describe("test _saveQuestionAnswer", () => {
   it("Async Function", async () => {
     const authedUser = "sarahedo";
     const qid = "vthrdm985a262al8qx3do";
     const answer = "optionOne";
-    const result = await saveQuestionAnswerApi({ authedUser, qid, answer });
+    const result = await _saveQuestionAnswer({ authedUser, qid, answer });
     expect(result).toEqual(true);
   });
 
@@ -50,7 +50,7 @@ describe("test saveQuestionAnswerApi", () => {
     const questionID = "vthrdm985a262al8qx3do123";
     const answer = "optionOne";
     try {
-      await saveQuestionAnswerApi({ authUser, questionID, answer });
+      await _saveQuestionAnswer({ authUser, questionID, answer });
     } catch (e) {
       expect(e).toBe("Please provide authedUser, qid, and answer");
     }
